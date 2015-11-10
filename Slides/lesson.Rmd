@@ -1,33 +1,47 @@
 ---
 title: "Introduction of Things"
 author: "Valerio Vaccaro"
-date: "7 novembre 2015"
+date: "26 Nov 2015"
 output: ioslides_presentation
 logo: ./img/logo.png
 job: Johns Hopkins Bloomberg School of Public Health
 ---
 
-## R Markdown
+## Introduction 
 
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
+## IoT Ecosystem
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Slide with R Code and Output
+## Our testbed 
 
 ```{r}
 summary(cars)
 ```
 
-## Slide with Plot
+## CC3200
 
 ```{r, echo=FALSE}
 plot(cars)
 ```
+
+## MQTT
+
+## NodeRED
+Node-RED is a tool for wiring together hardware devices, APIs and online services in new and interesting ways.
+
+## Exercize 
+Open 
+
+## R
+R is a free software environment for statistical computing and graphics. 
+
+## Exercize 
+Open
 
