@@ -15,3 +15,4 @@ data$Timestamp <- as.POSIXct(data$Timestamp/1000,origin = "1970-01-01",tz = "CET
 data$Hour <-  as.POSIXlt(data$Timestamp)$hour 
 
 summary(data)
+
