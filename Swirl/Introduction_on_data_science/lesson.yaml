@@ -1,0 +1,32 @@
+- Class: meta
+  Course: IoT Lab course
+  Lesson: Introduction on data science
+  Author: Valerio Vaccaro
+  Type: Standard
+  Organization: IoT Lab
+  Version: 1.0.0
+
+
+- Class: text
+  Output: "Welcome to the introduction to data science introduction laboratory!"
+
+- Class: text
+  Output: "In this lesson, we'll briefly introduce basics of data science."
+
+- Class: mult_question  
+  Output: Which of the following is NOT an example of statistical inference? 
+  AnswerChoices: Polling before an election to predict its outcome; Constructing a medical image from fMRI data; Testing the efficacy of a new drug; Recording the results of a statistics exam
+  CorrectAnswer: Recording the results of a statistics exam
+  AnswerTests: omnitest(correctVal='Recording the results of a statistics exam')
+  Hint: Which of the choices involves concrete data that doesn't require any inference or generalization?
+
+- Class: text
+  Output: So statistical inference involves formulating conclusions using data AND quantifying the uncertainty associated with those conclusions. The uncertainty could arise from incomplete or bad data.
+
+- Class: mult_question  
+  Output: Which of the following would NOT be a source of bad data? 
+  AnswerChoices: Small sample size; Selection bias; A randomly selected sample of population; A poorly designed study 
+  CorrectAnswer: A randomly selected sample of population
+  AnswerTests: omnitest(correctVal='A randomly selected sample of population')
+  Hint: Which of the choices would allow one to draw reasonable inferences?
+
