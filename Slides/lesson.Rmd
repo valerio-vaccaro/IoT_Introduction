@@ -4,48 +4,85 @@ author: "Valerio Vaccaro"
 date: "26 Nov 2015"
 output: ioslides_presentation
 logo: ./img/logo.jpg
-job: Johns Hopkins Bloomberg School of Public Health
 ---
 
 ## Introduction 
+In this lesson we well discover 
 
+Source code and this presentation is available on GitHub at the address
+
+[https://github.com/valerio-vaccaro/IoT_Introduction](https://github.com/valerio-vaccaro/IoT_Introduction)
+
+All software used is open source!
 
 
 ## IoT Ecosystem
+In an IoT ecosystem we have:
 
 - nodes and harware 
+- protocols and 
 - platform
 - analitics and rule 
 
 ## Our testbed 
-
 Based on open source/open hardware solutions:
 
-- 6 WIFI board CC3200
+- 6 WIFI board CC3200-LAUNCHXL
 - a common MQTT Broker
 - 6 istances of NodeRED  
-- an instance of R Studio Server with 6 users for data analysis 
+- an instance of R Studio Server with 6 users
 
 ## CC3200
-
 Based on open source/open hardware solutions:
 <div class="columns-2">
   ![CC3200](img/cc3200.jpeg)
 
-  - embedded 
+  - embedded board with a powerful SoC with WIFI capabilities
   - embedded sensors (2xTemperature, 3 axis accelerometer)
   - take care
-  - $29.99
+  - $29.99 
+  - can be programmed in C using the Energia open source software
+  [https://store.ti.com/cc3200-launchxl.aspx](https://store.ti.com/cc3200-launchxl.aspx)
 </div>
 
-[](https://store.ti.com/cc3200-launchxl.aspx)
+[https://store.ti.com/cc3200-launchxl.aspx](https://store.ti.com/cc3200-launchxl.aspx)
 
 ## MQTT
 
 ## NodeRED
-Node-RED is a tool for wiring together hardware devices, APIs and online services in new and interesting ways.
+Node-RED is a open source visual tool for wiring the Internet of Things developed by IBM Emerging Technology and the community.
+
 ![nodes](img/nodes.jpg)
+
 You can reach your nodered istance at the address https://store.ti.com/cc3200-launchxl.aspx where X is the numbero of your group.
+
+
+## Group
+
+_Group1_
+Mac: f4b85e087366 
+Barcode:  NB4001391
+
+_Group2_
+Mac: f4b85e0884f7
+Barcode:  NB4001338
+
+_Group3_
+Mac: d4f51303fc29 
+Barcode: NB5005292
+
+_Group4_
+Mac: f4b85e089dbc
+Barcode: NB4001278
+
+_Group5_
+Mac: f4b85e087359
+Barcode: NB4001323
+
+_Group6_
+Mac: d4f51303f8a2
+Barcode: NB6000140
+
 
 ## NodeRED - Exercise 1 - Add an Inject node 
 The Inject node allows you to inject messages into a flow, either by clicking the button on the node, or setting a time interval between injects.
