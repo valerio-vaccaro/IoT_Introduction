@@ -9,18 +9,17 @@ logo: ./img/logo.jpg
 ## Introduction 
 In this lesson we well discuss about Internet of Things  
 
-Source code and this presentation is available on GitHub at the address
+Source code and this presentation is available on GitHub at the address:
 
 <center>[https://github.com/valerio-vaccaro/IoT_Introduction](https://github.com/valerio-vaccaro/IoT_Introduction)</center>
 
-
-All software used is open source! This presentation is also 
+This presentation and all software used is Open Source (and if you want you can contribute to the development of this lesson!).
 
 ## Our testbed 
 Based on open source/open hardware solutions in this lesson we will use:
 
 - 6 WIFI board CC3200-LAUNCHXL
-- a common MQTT broker for messages
+- a common MQTT broker for messages 
 - 6 istances of NodeRED  
 - an instance of R Studio Server with 6 users
 
@@ -39,24 +38,26 @@ Based on open source/open hardware solutions:
 ## CC3200 - Firmware
 Every board can be can be programmed in C using the Energia open source software, the firmware provided in this lesson is customized for send and receive messages using the MQTT protocol and work 
 
-- every second send a message on the topic /
-- if receive a message on topic 
+- every second send a message on the topic iot/CC3200/_MAC address_/data
+- if receive a message on topic iot/CC3200/_MAC address_/command (ON/OFF messages turn on or off the red led)
 
+ <center>![CC3200](img/energia.tiff)</center>
 
 ## MQTT
 
-- 
+MQTT (formerly MQ Telemetry Transport) is a publish-subscribe based "light weight" messaging protocol for use on top of the TCP/IP protocol. 
 
+It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited. The publish-subscribe messaging pattern requires a message broker. 
 
-MQTT (formerly MQ Telemetry Transport) is a publish-subscribe based "light weight" messaging protocol for use on top of the TCP/IP protocol. It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited. The publish-subscribe messaging pattern requires a message broker. The broker is responsible for distributing messages to interested clients based on the topic of a message. 
+The broker is responsible for distributing messages to interested clients based on the topic of a message. 
+
+In our setup we use RabbitMQ broker with MQTT plugin.
 
 
 ## NodeRED
 Node-RED is a open source visual tool for wiring the Internet of Things developed by IBM Emerging Technology and the community.
 
 <center>![nodes](img/nodes.jpg) </center>
-
-We will work on NodeRED
 
 ## Groups
 | Group | NodeRed URL                | R URL                                 | MAC          | Barcode   |
@@ -69,6 +70,8 @@ We will work on NodeRED
 |  6    | http://10.0.1.64:8006/red/ | http://10.0.1.64:8787 - group6/group6 | d4f51303f8a2 | NB6000140 |
 
 ## NodeRED - Exercise 1 - Add an Inject node 
+In the tab "Lesson 1" on NodeRED you can find the code.
+
 The Inject node allows you to inject messages into a flow, either by clicking the button on the node, or setting a time interval between injects.
 
 Drag one onto the workspace from the palette.
@@ -223,22 +226,43 @@ It's time to introduce MQTT nodes, they allow to receive and send messages to th
 * send and receive a message to the group /test/all
 
 ## NodeRED - Exercise 4 - Receive data from CC3200
+In the tab "Lesson 2" on NodeRED you can find the code.
 
+Modify the code as follow:
 
+- analize the object returned after the json node
+- extract the value TempObj and create a new message with only this value in the payload 
+- if payload is > 30 then modify the payload in OFF
+- if payload is <= 30 then modify the payload in ON
+- send the generate message to the board on command queue
+
+In the tab "Lesson 3" you can find all the code we are using for save all the information received from the board. Don't modify the code in this tab!
 
 ## Big Data or Data Science???
 
  <center>![CC3200](img/conditional_risk.png)</center>
  
 ## Probabilistic approach
-
  <center>![CC3200](img/normal.jpg)</center>
+ 
+How we can alainze a big amount of data and find out the models? We can use a special software for doing some statistical analysis.
 
 ## R
-R is a free software environment for statistical computing and graphics. 
+R is a language and environment for statistical computing and graphics and  provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. 
 
-## R - Exercise 1 - Receive data
-Collect recoded data.
+Why choose R? Because R ...
+
+- is "a powerful software environment for statistical computing and graphics."
+- is Open Source (so it's completely free!)
+- is incredibly modular
+- has a large development community s)
+- uses scripts, which can help with replication/validation
+- can be used with different IDEs (RConsole, RStudio, JGR, etc...)
+
+## R - Example - Receive data
+Connect to http://10.0.1.64:8787 ang log-in with provided username/password. 
+
+In the platform you can find out some scripts added for analize the data collected from the CC3200 boards, for example you can load the dataset with the following script
 
 ```{R}
 # example for group 1, change URL using your group number
@@ -253,18 +277,48 @@ data$Hour <-  as.POSIXlt(data$Timestamp)$hour
 
 ```
 
-Try to write summary(data) on R.
+   Or opening the file 1.1.load.R and try to analize the data using the command summary(data) on R.
 
-## R - Exercise 1 - Plot temperature
-Collect recoded data.
+## R - Example - Plot temperature
+Plotting is the first activity you can do on clean data, you can use the ggplot2 library for do a first data analysis.
 
-```{R, warning=false}
+```{R}
 library(ggplot2)
-ggplot(data=data, aes(Temp)) +
-        geom_histogram() +
-        facet_grid(Hour ~ Board)
+
+g <- ggplot(data=data, aes(x=Timestamp)) + 
+  geom_line(aes(y=Temp, color="air temperature")) + 
+  geom_line(aes(y=TempObj, color="object temperature"))
+
+h <- ggplot(data=data, aes(Temp)) +
+        geom_histogram() 
 ```
 
-How we can plot TempObj?
+More examples are present in the file 1.2.plot.R
 
-How we can plot the difference between Temp and TempObj? What distribution remember this plot?
+## R - Example - Plot temperature - Values
+
+```{R, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, message=FALSE}
+g 
+```
+
+## R - Example - Plot temperature - Histogram
+
+```{R, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, message=FALSE}
+h
+```
+
+## R - Example - Questions
+Open the file 1.2.load.R and try to answer the following questions:
+
+- How we can plot TempObj?
+- How we can plot the difference between Temp and TempObj? What distribution remember this plot?
+- How we can compare temperature at different hours?
+- How we can rapresent accelerometer informations?
+
+Open the file 1.3.model.R and try to answer the following questions:
+
+- Can we describe Temp in terms of TempObj based on data recorded? Can we use a linear model?
+- RSSI has an impact on Temp?
+
+## Questions & Answers
+ <center>![CC3200](img/42.png)</center>

@@ -19,3 +19,10 @@ summary(model)
 # with cross correlation 
 cor(data$Temp, data$TempObj)
 cor(data$Temp, data$RSSI)
+
+# plot
+ggplot(data=data, aes(x=Timestamp, y=TempObj)) + 
+        geom_line(aes(y=Temp, color="a")) + 
+        geom_line(aes(y=TempObj, color="b")) + 
+        geom_smooth(method="lm",col=1,size=2) +
+        facet_grid( . ~ Board )
