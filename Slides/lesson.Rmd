@@ -7,89 +7,73 @@ logo: ./img/logo.jpg
 ---
 
 ## Introduction 
-In this lesson we well discover 
+In this lesson we well discuss about Internet of Things  
 
 Source code and this presentation is available on GitHub at the address
 
-[https://github.com/valerio-vaccaro/IoT_Introduction](https://github.com/valerio-vaccaro/IoT_Introduction)
-
-All software used is open source!
+<center>[https://github.com/valerio-vaccaro/IoT_Introduction](https://github.com/valerio-vaccaro/IoT_Introduction)</center>
 
 
-## IoT Ecosystem
-In an IoT ecosystem we have:
-
-- nodes and harware 
-- protocols and 
-- platform
-- analitics and rule 
+All software used is open source! This presentation is also 
 
 ## Our testbed 
-Based on open source/open hardware solutions:
+Based on open source/open hardware solutions in this lesson we will use:
 
 - 6 WIFI board CC3200-LAUNCHXL
-- a common MQTT Broker
+- a common MQTT broker for messages
 - 6 istances of NodeRED  
 - an instance of R Studio Server with 6 users
 
-## CC3200
+## CC3200 - Hardware
 Based on open source/open hardware solutions:
 <div class="columns-2">
-  ![CC3200](img/cc3200.jpeg)
-
+  <center>![CC3200](img/cc3200.jpeg)</center>
+  
   - embedded board with a powerful SoC with WIFI capabilities
   - embedded sensors (2xTemperature, 3 axis accelerometer)
-  - take care
-  - $29.99 
-  - can be programmed in C using the Energia open source software
-  [https://store.ti.com/cc3200-launchxl.aspx](https://store.ti.com/cc3200-launchxl.aspx)
+  - low price $29.99  
 </div>
 
-[https://store.ti.com/cc3200-launchxl.aspx](https://store.ti.com/cc3200-launchxl.aspx)
+<center>[https://store.ti.com/cc3200-launchxl.aspx](https://store.ti.com/cc3200-launchxl.aspx)</center>
+
+## CC3200 - Firmware
+Every board can be can be programmed in C using the Energia open source software, the firmware provided in this lesson is customized for send and receive messages using the MQTT protocol and work 
+
+- every second send a message on the topic /
+- if receive a message on topic 
+
 
 ## MQTT
+
+- 
+
+
+MQTT (formerly MQ Telemetry Transport) is a publish-subscribe based "light weight" messaging protocol for use on top of the TCP/IP protocol. It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited. The publish-subscribe messaging pattern requires a message broker. The broker is responsible for distributing messages to interested clients based on the topic of a message. 
+
 
 ## NodeRED
 Node-RED is a open source visual tool for wiring the Internet of Things developed by IBM Emerging Technology and the community.
 
-![nodes](img/nodes.jpg)
+<center>![nodes](img/nodes.jpg) </center>
 
-You can reach your nodered istance at the address https://store.ti.com/cc3200-launchxl.aspx where X is the numbero of your group.
+We will work on NodeRED
 
-
-## Group
-
-_Group1_
-Mac: f4b85e087366 
-Barcode:  NB4001391
-
-_Group2_
-Mac: f4b85e0884f7
-Barcode:  NB4001338
-
-_Group3_
-Mac: d4f51303fc29 
-Barcode: NB5005292
-
-_Group4_
-Mac: f4b85e089dbc
-Barcode: NB4001278
-
-_Group5_
-Mac: f4b85e087359
-Barcode: NB4001323
-
-_Group6_
-Mac: d4f51303f8a2
-Barcode: NB6000140
-
+## Groups
+| Group | NodeRed URL                | R URL                                 | MAC          | Barcode   |
+|-------|----------------------------|---------------------------------------|--------------|-----------|
+|  1    | http://10.0.1.64:8001/red/ | http://10.0.1.64:8787 - group1/group1 | f4b85e087366 | NB4001391 |
+|  2    | http://10.0.1.64:8002/red/ | http://10.0.1.64:8787 - group2/group2 | f4b85e0884f7 | NB4001338 |
+|  3    | http://10.0.1.64:8003/red/ | http://10.0.1.64:8787 - group3/group3 | d4f51303fc29 | NB5005292 |
+|  4    | http://10.0.1.64:8004/red/ | http://10.0.1.64:8787 - group4/group4 | f4b85e089dbc | NB4001278 |
+|  5    | http://10.0.1.64:8005/red/ | http://10.0.1.64:8787 - group5/group5 | f4b85e087359 | NB4001323 |
+|  6    | http://10.0.1.64:8006/red/ | http://10.0.1.64:8787 - group6/group6 | d4f51303f8a2 | NB6000140 |
 
 ## NodeRED - Exercise 1 - Add an Inject node 
 The Inject node allows you to inject messages into a flow, either by clicking the button on the node, or setting a time interval between injects.
 
 Drag one onto the workspace from the palette.
 
- ![CC3200](img/inject.jpg)
+ <center>![CC3200](img/inject.jpg)</center>
 
 Open the sidebar (Ctrl-Space, or via the dropdown menu) and select the Info tab.
 
@@ -99,19 +83,19 @@ Select the newly added Inject node to see information about its properties and a
 
 The Debug node causes any message to be displayed in the Debug sidebar. By default, it just displays the payload of the message, but it is possible to display the entire message object.
 
- ![CC3200](img/debug.jpg)
+ <center>![CC3200](img/debug.jpg)</center>
 
 ## NodeRED - Exercise 1 - Wire the two together ans deploy
 
 Connect the Inject and Debug nodes together by dragging between the output port of one to the input port of the other.
 
- ![CC3200](img/ex1.jpg)
+ <center>![CC3200](img/ex1.jpg)</center>
 
 At this point, the nodes only exist in the editor and must be deployed to the server.
 
 Click the Deploy button. Simple as that.
 
- ![CC3200](img/deploy.jpg)
+<center>![CC3200](img/deploy.jpg)</center>
 
 With the Debug sidebar tab selected, click the Inject button. You should see numbers appear in the sidebar. By default, the Inject node uses the number of milliseconds since January 1st, 1970 as its payload. Let’s do something more useful with that.
 
@@ -119,7 +103,7 @@ With the Debug sidebar tab selected, click the Inject button. You should see num
 
 The Function node allows you to pass each message though a JavaScript function.
 
- ![CC3200](img/function.jpg)
+ <center>![CC3200](img/function.jpg)</center>
 
 Double-click on the Function node to bring up the edit dialog. Copy the follow code into the function field:
 ```{}
@@ -135,7 +119,7 @@ return msg;
 
 Click Ok to close the edit dialog and then click the deploy button.
 
- ![CC3200](img/ex1b.jpg)
+<center>![CC3200](img/ex1b.jpg)</center>
  
 Now when you click the Inject button, the messages in the sidebar will be more readable time stamps.
 
@@ -154,7 +138,7 @@ In the previous example, the Inject node was used to trigger the flow when its b
 
 Drag an Inject node onto the workspace from the palette.
 
- ![CC3200](img/inject.jpg)
+<center>![CC3200](img/inject.jpg)</center>
 
 Double click the node to bring up the edit dialog. Set the repeat interval to every 5 minutes on every day.
 
@@ -164,7 +148,7 @@ Click Ok to close the dialog.
 
 The HttpRequest node can be used to retrieve a web-page when triggered.
 
- ![CC3200](img/httprequest.jpg)
+<center>![CC3200](img/httprequest.jpg)</center>
  
 After adding one to the workspace, edit it to set the URL property to:
 ```
@@ -203,7 +187,7 @@ Wire the HttpRequest node output to the Function node input.
 
 Wire each of the Function node outputs to a different Debug node input.
 
- ![CC3200](img/ex2.jpg)
+<center>![CC3200](img/ex2.jpg)</center>
 
 ## NodeRED - Exercise 2 -  Deploy
 
@@ -217,7 +201,7 @@ With the Debug sidebar tab selected (Ctrl-Space, or via the dropdown menu, then 
 
 and another with something like:
 
-```{}(boolean) true``
+```(boolean) true```
 
 ## NodeRED - Exercise 2 - Summary
 
@@ -229,23 +213,58 @@ The frequency is an indication of overall stress - so when the frequency is unde
 
 ## NodeRED - Exercise 3 - MQTT
 
-Play freely with MQTT Nodes.
+It's time to introduce MQTT nodes, they allow to receive and send messages to the configured MQTT broker.
 
- ![CC3200](img/ex3.jpg)
+<center>![CC3200](img/ex3.jpg)</center>
  
  Try to:
  
 * send and receive a message to the topic /test/group1 (you need to check and add only wires)
 * send and receive a message to the group /test/all
 
+## NodeRED - Exercise 4 - Receive data from CC3200
+
+
+
 ## Big Data or Data Science???
 
- ![CC3200](img/conditional_risk.png)
+ <center>![CC3200](img/conditional_risk.png)</center>
+ 
+## Probabilistic approach
+
+ <center>![CC3200](img/normal.jpg)</center>
 
 ## R
 R is a free software environment for statistical computing and graphics. 
 
- 
-## demo
-We are collecting all information from the boards 
+## R - Exercise 1 - Receive data
+Collect recoded data.
 
+```{R}
+# example for group 1, change URL using your group number
+data <- read.csv("http://10.0.1.64:8001/api/dataset", header = FALSE)
+names(data) <- c("Timestamp", "Board", "Temp", "TempObj",
+                 "X", "Y", "Z", "RSSI", "Button1", "Button2")
+# convert timestamp from Epoch to a POSIXct object
+data$Timestamp <- as.POSIXct(data$Timestamp/1000,origin =
+                                     "1970-01-01",tz = "CET")
+# add column with hour
+data$Hour <-  as.POSIXlt(data$Timestamp)$hour 
+
+```
+
+Try to write summary(data) on R.
+
+## R - Exercise 1 - Plot temperature
+Collect recoded data.
+
+```{R, warning=false}
+library(ggplot2)
+ggplot(data=data, aes(Temp)) +
+        geom_histogram() +
+        facet_grid(Hour ~ Board)
+```
+
+How we can plot TempObj?
+
+How we can plot the difference between Temp and TempObj? What distribution remember this plot?
