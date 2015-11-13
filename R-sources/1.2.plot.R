@@ -1,13 +1,28 @@
 library(ggplot2)
 
+# plot temp and tempObj
 ggplot(data=data, aes(x=Timestamp)) + 
-  geom_line(aes(y=X, color="a")) + 
-  geom_line(aes(y=Y, color="b")) + 
-  geom_line(aes(y=Z, color="c")) +
-  facet_grid( . ~ Board )
+  geom_line(aes(y=Temp, color="air temperature")) + 
+  geom_line(aes(y=TempObj, color="object temperature"))
+
+# plot the histogram for Temp
+ggplot(data=data, aes(Temp)) +
+  geom_histogram() +
+  facet_grid(Hour ~ .)
+
+# plot acceleration
+ggplot(data=data, aes(x=Timestamp)) + 
+  geom_line(aes(y=X, color="x")) + 
+  geom_line(aes(y=Y, color="y")) + 
+  geom_line(aes(y=Z, color="z")) 
+
+# plot the histogram for Temp
+ggplot(data=data, aes(X^2+Y^2+Z^2)) +
+  geom_histogram() +
+  facet_grid(Hour ~ .)
 
 
-
+# mak
 ggplot(data=data, aes(Temp)) +
         geom_histogram() +
         facet_grid(Hour ~ Board)
