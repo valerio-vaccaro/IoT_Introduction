@@ -24,4 +24,7 @@ data$Hour <-  as.POSIXlt(data$Timestamp)$hour
 # avoid errors
 data <- data[data$Board!="", ]
 
+# print summaries
+head(data)
+str(data)
 summary(data)
