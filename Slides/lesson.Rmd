@@ -7,7 +7,7 @@ logo: ./img/logo.jpg
 ---
 
 ## Introduction 
-In this lesson we well discuss about Internet of Things  
+In this lesson we will discuss about a complete Internet of Things solutions in a lab enviroment.
 
 Source code and this presentation is available on GitHub at the address:
 
