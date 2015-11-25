@@ -22,10 +22,18 @@ ggplot(data=data, aes(x=Timestamp)) +
   geom_line(aes(y=Z, color="z")) 
 
 # plot RSSI
-ggplot(data=data, aes(x=Timestamp)) + 
-  geom_line(aes(y=RSSI, color="RSSI"))
-
+data$RSSI <- data$RSSI * -1
+ggplot(data=data, aes(x=Timestamp, y=RSSI)) + 
+  geom_line(aes(y=RSSI, color="RSSI")) +
+  geom_smooth(method="lm") +
+  facet_grid(. ~ Board)
 # plot the histogram for RSSI
 ggplot(data=data, aes(RSSI)) +
-   geom_histogram() +
-   facet_grid(. ~ Board)
+  geom_histogram() +
+  facet_grid(. ~ Board)
+# but we want avoid RSSI = 0 because it's a missing data and not a value
+ggplot(data=data[data$RSSI<0, ], aes(x=Timestamp, y=RSSI)) + 
+  geom_line(aes(y=RSSI, color="RSSI")) +
+  geom_smooth(method="lm") +
+  facet_grid(. ~ Board)
+
